@@ -1,5 +1,5 @@
 {
-  "name": "@ds.e/react",
+  "name": "@ds.e-2/react",
   "version": "1.0.0",
   "main": "lib/index.js",
   "license": "MIT",
@@ -12,6 +12,7 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "dev": "yarn build --watch"
+    "dev": "yarn build --watch",
+    "lint:fix": "yarn prettier --write './**/*.(ts|tsx)'"
   }
 }

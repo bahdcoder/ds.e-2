@@ -1,0 +1,77 @@
+@import "foundation/all";
+
+.dse-select {
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+}
+
+.dse-select__label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: map-get($spacing, 'xs');
+
+    border: 1px solid $white-dark;
+
+    width: 100%;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    font-family: $body-font-family;
+    background: transparent;
+}
+
+.dse-select__caret {
+    transition: all 250ms ease;
+
+    &--up {
+        transform: rotate(180deg);
+    }
+
+    &--down {
+        transform: rotate(0deg);
+    }
+}
+
+.dse-select__overlay {
+    // margin-top: map-get($spacing, 'xxs');
+    padding: map-get($spacing, 'none');
+    margin: map-get($spacing, 'none');
+
+    border: 1px solid $white-dark;
+    background-color: $white;
+    z-index: 99;
+
+    position: absolute;
+
+    box-shadow: 0px 4px 11px rgba(157, 157, 157, 0.21);
+}
+
+.dse-select__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    padding: map-get($spacing, 'xs');
+    box-sizing: border-box;
+
+    &__label {
+        display: flex;
+        align-items: center;
+    }
+
+    &--highlighted {
+        background-color: $white-dark;
+    }
+
+    &--selected {
+        background-color: $green;
+        color: $white;
+    }
+}

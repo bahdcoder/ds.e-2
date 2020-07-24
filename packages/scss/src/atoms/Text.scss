@@ -2,6 +2,7 @@
 
 .dse-text {
     margin: 0;
+    display: inline;
 }
 
 @each $size, $value in $fs {

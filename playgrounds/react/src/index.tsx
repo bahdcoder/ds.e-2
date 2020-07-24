@@ -1,18 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { Text, Margin } from '@ds.e/react'
+import { Select } from '@ds.e-2/react'
 
-import '@ds.e/scss/lib/Utilities.css'
-import '@ds.e/scss/lib/Text.css'
-import '@ds.e/scss/lib/Margin.css'
-import '@ds.e/scss/lib/global.css'
+import '@ds.e-2/scss/lib/Utilities.css'
+import '@ds.e-2/scss/lib/Text.css'
+import '@ds.e-2/scss/lib/Margin.css'
+import '@ds.e-2/scss/lib/global.css'
+import '@ds.e-2/scss/lib/Select.css'
+import '@ds.e-2/scss/lib/Color.css'
 
 ReactDOM.render(
-    <div>
-        <Margin>
-            <Text size='xs'>this is some text</Text>
-        </Margin>
+    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <Select width='300px' />
     </div>,
     document.querySelector('#root')
 )

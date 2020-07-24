@@ -1,1 +1,1 @@
-export { default } from './Margin'
+export { default } from "./Margin";
