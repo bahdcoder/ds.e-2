@@ -157,6 +157,7 @@ const Select: React.FC<SelectProps> = ({ width = "100%" }) => {
     <div style={{ width }} className="dse-select">
       <button
         role="button"
+        data-testid='DseSelectLabel'
         onKeyDown={onLabelKeyDown}
         aria-haspopup={true}
         aria-controls="dse-select-list"
