@@ -15,46 +15,52 @@ import Text from "../../atoms/Text";
 // import Color from "../../atoms/Color";
 // import Margin from "../../atoms/Margin";
 
-interface SelectProps {
-  width?: string;
+interface SelectOpion {
+  label: string
+  value: string
 }
 
-const getNextItemIndex = (currentIndex: number|null, items: Array<any>): number => {
+interface RenderOptionArguments {
+  selectIsOpen: boolean
+  isSelected: boolean
+  option: SelectOpion
+  isHighlighted: boolean
+  ref: React.RefObject<HTMLLIElement>
+  getOptionRecommendedProps: (overrideProps?: Object) => Object
+}
+
+export interface SelectProps {
+  width?: string;
+  options?: Array<SelectOpion>;
+  onOptionSelected?: (option: SelectOpion) => void
+  renderOption?: (options: RenderOptionArguments) => React.ReactNode
+}
+
+const getNextItemIndex = (currentIndex: number|null, options: Array<any>): number => {
     if (currentIndex === null) {
         return 0
     }
 
-    if (currentIndex === items.length - 1) {
+    if (currentIndex === options.length - 1) {
         return 0
     }
 
     return currentIndex + 1
 }
 
-const getPreviousItemIndex = (currentIndex: number|null, items: Array<any>): number => {
+const getPreviousItemIndex = (currentIndex: number|null, options: Array<any>): number => {
     if (currentIndex === null) {
         return 0
     }
 
     if (currentIndex === 0) {
-        return items.length - 1
+        return options.length - 1
     }
 
     return currentIndex - 1
 }
 
-const Select: React.FC<SelectProps> = ({ width = "100%" }) => {
-    const items = [
-        { hexCode: "#000", label: "Strict Black" },
-        {
-            hexCode: "green",
-            label: "Heavenly green",
-        },
-        {
-            hexCode: "pink",
-            label: "Sweet Pink",
-        },
-    ]
+const Select: React.FC<SelectProps> = ({ width = "100%", options = [], onOptionSelected, renderOption }) => {
   const labelRef = useRef<HTMLButtonElement>(null);
   const [itemRefs, setItemRefs] = useState<Array<React.RefObject<HTMLLIElement>>>([])
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -67,7 +73,7 @@ const Select: React.FC<SelectProps> = ({ width = "100%" }) => {
   };
 
   const onOptionSelect = (itemIndex: number) => {
-      const item = items[itemIndex]
+      const item = options[itemIndex]
 
       if (! item) {
           return
@@ -75,6 +81,10 @@ const Select: React.FC<SelectProps> = ({ width = "100%" }) => {
 
       setSelectedIndex(itemIndex)
       setIsOpen(false)
+
+      if (onOptionSelected) {
+        onOptionSelected(item)
+      }
   }
 
   const toggleHighlightedItem = (index: number | null) => {
@@ -86,11 +96,10 @@ const Select: React.FC<SelectProps> = ({ width = "100%" }) => {
 
       // DOWN arrow
       if ([32, 13, 40].includes(event.keyCode)) {
-          setIsOpen(true)
+          setIsOpen(!isOpen)
 
-          highlightItem(getNextItemIndex(highlightedIndex, items))
+          highlightItem(getNextItemIndex(highlightedIndex, options))
       }
-
   }
 
   const highlightItem = (index: number|null) => {
@@ -115,14 +124,14 @@ const Select: React.FC<SelectProps> = ({ width = "100%" }) => {
 
     // DOWN arrow
     if (event.keyCode === 40) {
-        highlightItem(getNextItemIndex(highlightedIndex, items))
+        highlightItem(getNextItemIndex(highlightedIndex, options))
 
         return
     }
 
     // UP arrow
     if (event.keyCode === 38) {
-        highlightItem(getPreviousItemIndex(highlightedIndex, items))
+        highlightItem(getPreviousItemIndex(highlightedIndex, options))
 
         return
     }
@@ -138,8 +147,8 @@ const Select: React.FC<SelectProps> = ({ width = "100%" }) => {
   }, [labelRef.current?.offsetHeight]);
 
   useEffect(() => {
-    setItemRefs(items.map(_ => createRef<HTMLLIElement>()))
-  }, [items.length])
+    setItemRefs(options.map(_ => createRef<HTMLLIElement>()))
+  }, [options.length])
 
   useEffect(() => {
       if (highlightedIndex !== null && isOpen) {
@@ -151,7 +160,7 @@ const Select: React.FC<SelectProps> = ({ width = "100%" }) => {
       }
   }, [isOpen])
 
-  const selected = items[selectedIndex!]
+  const selected = options[selectedIndex!]
 
   return (
     <div style={{ width }} className="dse-select">
@@ -197,29 +206,45 @@ const Select: React.FC<SelectProps> = ({ width = "100%" }) => {
           style={{ width: `calc(${width} - 2px)`, top: overlayTop }}
           aria-activedescendant={`dse-select__item-${highlightedIndex}`}
         >
-          {items.map((item, index) => {
+          {options.map((item, index) => {
             const highlighted = index === highlightedIndex;
             const selected = index === selectedIndex
             const ref = itemRefs[index]
 
+            const getOptionRecommendedProps = (overrideProps = {}) => ({
+              tabIndex: highlighted ? -1 : 0,
+              ref,
+              onMouseLeave: () => toggleHighlightedItem(null),
+              onMouseEnter: () => toggleHighlightedItem(index),
+              role: 'menuitemradio',
+              'aria-checked': selected ? true : undefined,
+              onKeyDown: onOptionKeyDown,
+              onClick: () => onOptionSelect(index),
+              id: `dse-select__item-${index}`,
+              className: `dse-select__item ${
+                highlighted ? "dse-select__item--highlighted" : ""
+              }  ${
+                  selected ? "dse-select__item--selected" : ""
+              }`,
+              'aria-label': item.label,
+              key: index,
+              ...overrideProps
+            })
+
+            if (renderOption) {
+              return renderOption({
+                ref,
+                isHighlighted: highlighted,
+                isSelected: selected,
+                option: item,
+                selectIsOpen: isOpen,
+                getOptionRecommendedProps
+              })
+            }
+
             return (
               <li
-                ref={ref}
-                onMouseEnter={() => toggleHighlightedItem(index)}
-                onMouseLeave={() => toggleHighlightedItem(null)}
-                tabIndex={highlighted ? -1 : 0}
-                role="menuitemradio"
-                aria-checked={selected ? true : undefined}
-                onClick={() => onOptionSelect(index)}
-                onKeyDown={onOptionKeyDown}
-                id={`dse-select__item-${index}`}
-                aria-label={item.label}
-                key={index}
-                className={`dse-select__item ${
-                  highlighted ? "dse-select__item--highlighted" : ""
-                }  ${
-                    selected ? "dse-select__item--selected" : ""
-                }`}
+                {...getOptionRecommendedProps()}
               >
                 <div className="dse-select__item__label">
                   {/* <Color hexCode={item.hexCode} /> */}

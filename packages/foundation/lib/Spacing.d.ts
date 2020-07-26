@@ -1,13 +1,13 @@
 declare const _default: Readonly<{
-    none: string;
-    xxxs: string;
-    xxs: string;
-    xs: string;
-    sm: string;
-    md: string;
-    lg: string;
-    xl: string;
-    xxl: string;
-    xxxl: string;
+    none: "none";
+    xxxs: "xxxs";
+    xxs: "xxs";
+    xs: "xs";
+    sm: "sm";
+    md: "md";
+    lg: "lg";
+    xl: "xl";
+    xxl: "xxl";
+    xxxl: "xxxl";
 }>;
 export default _default;
