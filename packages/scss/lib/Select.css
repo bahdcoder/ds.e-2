@@ -1,0 +1,165 @@
+/*=============================================
+    #Variables
+=============================================*/
+/**
+ * TABLE OF CONTENTS
+ * 
+ * COLORS
+ * Brand colors...................These are the main brand colors. They will be used the most
+ * Neutral colors.................White and black, gray scale, secondary colors.
+ * Utility colors.................Other colors to represent states: info, warning, success, etc.
+ * 
+ * TYPOGRAPHY
+ * Font families..................The fonts used in the design system.
+ * Font weights...................Font weights
+ * Sizes..........................Font sizing for body text, paragraphs, inputs
+ * Heading sizes..................Font sizing for page headings
+ *
+ * BREAKPOINTS
+ * Breakpoints....................Global responsive breakpoints definitions.
+ *
+ * SPACING
+ * Spacing........................Global fixed set of spacing variables
+ */
+/*=============================================
+=                  Colors                     =
+=============================================*/
+/* Brand Colors */
+/* Neutral Colors */
+/* Utility colors */
+/*=====  End of Colors  ======*/
+/*=============================================
+=                Typography                   =
+=============================================*/
+/**
+ *
+ * 1) The playfair font. We'll use this for headings mostly.
+ *     https://fonts.google.com/specimen/Playfair+Display
+ *
+ * 2) The raleway font. We'll use this for the body text.
+ *     https://fonts.google.com/specimen/Raleway
+ */
+/* Font families */
+/* 1 */
+/* 2 */
+/* Font sizes */
+/* Heading font sizes */
+/* Font weights */
+/*=====  End of Typography  ======*/
+/*=============================================
+=            Breakpoints                      =
+=============================================*/
+/*=====  End of Breakpoints  ======*/
+/*=============================================
+=            Spacing                          =
+=============================================*/
+/*=====  End of Spacing  ======*/
+/*=============================================
+=            Foundation - colors              =
+=============================================*/
+/**
+ * This file defines the actual colors that will be used for styling. They will default to the palette
+ * we defined in the _variable.scss file. This is our default palette, and devs can override this
+ * with their own variables.
+ */
+/*=============================================
+=            Global text colors               =
+=============================================*/
+/*=============================================
+=                 Buttons                     =
+=============================================*/
+/*=============================================
+=                 Forms                       =
+=============================================*/
+/*=============================================
+=        Foundation - Typography              =
+=============================================*/
+/**
+ * This file defines the default font sizes to be used on headings and texts. The defaults come
+ * from the palette defined in _variables.scss.
+ */
+/*=============================================
+=            Body font family                  =
+=============================================*/
+/*=============================================
+=            Body font sizes                  =
+=============================================*/
+/*=============================================
+=            Heading font sizes               =
+=============================================*/
+/*=============================================
+=            Head font weights                =
+=============================================*/
+/*=============================================
+=            Mixins                           =
+=============================================*/
+/**
+ *
+ * Helpful reusable function-like things that will be used to implement
+ * styles for components.
+ *
+ */
+.dse-select {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.dse-select__label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  border: 1px solid #f1f2f3;
+  width: 100%;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-family: var(--dse-body-font-family, "Playfair Display", serif);
+  background: transparent;
+}
+
+.dse-select__caret {
+  transition: all 250ms ease;
+}
+
+.dse-select__caret--up {
+  transform: rotate(180deg);
+}
+
+.dse-select__caret--down {
+  transform: rotate(0deg);
+}
+
+.dse-select__overlay {
+  padding: 0rem;
+  margin: 0rem;
+  border: 1px solid #f1f2f3;
+  background-color: #fff;
+  z-index: 99;
+  position: absolute;
+  box-shadow: 0px 4px 11px rgba(157, 157, 157, 0.21);
+}
+
+.dse-select__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  padding: 0.75rem;
+  box-sizing: border-box;
+}
+
+.dse-select__item__label {
+  display: flex;
+  align-items: center;
+}
+
+.dse-select__item--highlighted {
+  background-color: #f1f2f3;
+}
+
+.dse-select__item--selected {
+  background-color: #5ece7b;
+  color: #fff;
+}

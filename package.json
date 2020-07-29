@@ -1,0 +1,26 @@
+{
+  "name": "@ds.e-2/core",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Frantz Kati <bahdcoder@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  },
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "playgrounds/*"
+    ],
+    "nohoist": [
+      "**/normalize-scss"
+    ]
+  },
+  "scripts": {
+    "build": "yarn lerna run build",
+    "dev": "yarn lerna run dev",
+    "test": "yarn lerna run test",
+    "test:watch": "yarn lerna run test:watch"
+  }
+}

@@ -1,0 +1,21 @@
+name: Build & Test CI
+
+on:
+    push:
+        branches:
+            - master
+    
+    pull_request:
+        branches:
+            - master
+
+jobs:
+    builds:
+        runs-on: ubuntu-latest
+        steps:
+            - id: yarn-cache
+              name: Get Yarn cache path
+              run: echo "::set-output name=dir::$(yarn cache dir)"
+
+            - uses: actions/checkout@v2
+            
