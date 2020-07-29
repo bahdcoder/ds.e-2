@@ -1,6 +1,0 @@
-56 error Error: Command failed: git tag v0.1.0 -m v0.1.0
-56 error fatal: tag 'v0.1.0' already exists
-56 error
-56 error     at makeError (/Users/bahdcoder/Projects/ds.e-2/node_modules/execa/index.js:174:9)
-56 error     at /Users/bahdcoder/Projects/ds.e-2/node_modules/execa/index.js:278:16
-56 error     at processTicksAndRejections (internal/process/task_queues.js:97:5)
