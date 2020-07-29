@@ -1,11 +1,14 @@
+import Path from 'path'
 import Ts from 'rollup-plugin-typescript2'
+
+const resolve = path => Path.resolve(__dirname, path)
 
 export default {
     input: [
-        'src/index.ts',
-        'src/atoms/Color/index.ts',
-        'src/atoms/Margin/index.ts',
-        'src/organisms/Select/index.ts',
+        resolve('src/index.ts'),
+        resolve('src/atoms/Color/index.ts'),
+        resolve('src/atoms/Margin/index.ts'),
+        resolve('src/organisms/Select/index.ts'),
     ],
     output: {
         dir: 'lib',
