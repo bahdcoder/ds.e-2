@@ -2,7 +2,7 @@ const Fs = require('fs')
 const Path = require('path')
 const Sass = require('node-sass')
 
-const resolve = (path) => Path.resolve(__dirname, path)
+const resolve = (path) => Path.resolve(__dirname, '..', '..', path)
 
 const getComponents = () => {
     let allComponents = []
