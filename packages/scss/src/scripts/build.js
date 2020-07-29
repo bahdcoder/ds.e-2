@@ -7,7 +7,7 @@ const resolve = (path) => Path.resolve(__dirname, '..', '..', path)
 const getComponents = () => {
     let allComponents = []
 
-    const types = ['atoms', 'molecules', 'organisms']
+    const types = ['atoms', 'molecules']
 
     types.forEach(type => {
         const allFiles = Fs.readdirSync(resolve(`src/${type}`)).map(file => ({
