@@ -21,6 +21,7 @@ const getPreviousItemIndex = (currentIndex, options) => {
     return currentIndex - 1;
 };
 const Select = ({ width = "100%", options = [], onOptionSelected, renderOption }) => {
+    var _a;
     const labelRef = useRef(null);
     const [itemRefs, setItemRefs] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
@@ -83,8 +84,9 @@ const Select = ({ width = "100%", options = [], onOptionSelected, renderOption }
         }
     };
     useEffect(() => {
-        setOverlayTop((labelRef.current?.offsetHeight || 0) + 10);
-    }, [labelRef.current?.offsetHeight]);
+        var _a;
+        setOverlayTop((((_a = labelRef.current) === null || _a === void 0 ? void 0 : _a.offsetHeight) || 0) + 10);
+    }, [(_a = labelRef.current) === null || _a === void 0 ? void 0 : _a.offsetHeight]);
     useEffect(() => {
         setItemRefs(options.map(_ => createRef()));
     }, [options.length]);
@@ -108,21 +110,7 @@ const Select = ({ width = "100%", options = [], onOptionSelected, renderOption }
             const highlighted = index === highlightedIndex;
             const selected = index === selectedIndex;
             const ref = itemRefs[index];
-            const getOptionRecommendedProps = (overrideProps = {}) => ({
-                tabIndex: highlighted ? -1 : 0,
-                ref,
-                onMouseLeave: () => toggleHighlightedItem(null),
-                onMouseEnter: () => toggleHighlightedItem(index),
-                role: 'menuitemradio',
-                'aria-checked': selected ? true : undefined,
-                onKeyDown: onOptionKeyDown,
-                onClick: () => onOptionSelect(index),
-                id: `dse-select__item-${index}`,
-                className: `dse-select__item ${highlighted ? "dse-select__item--highlighted" : ""}  ${selected ? "dse-select__item--selected" : ""}`,
-                'aria-label': item.label,
-                key: index,
-                ...overrideProps
-            });
+            const getOptionRecommendedProps = (overrideProps = {}) => (Object.assign({ tabIndex: highlighted ? -1 : 0, ref, onMouseLeave: () => toggleHighlightedItem(null), onMouseEnter: () => toggleHighlightedItem(index), role: 'menuitemradio', 'aria-checked': selected ? true : undefined, onKeyDown: onOptionKeyDown, onClick: () => onOptionSelect(index), id: `dse-select__item-${index}`, className: `dse-select__item ${highlighted ? "dse-select__item--highlighted" : ""}  ${selected ? "dse-select__item--selected" : ""}`, 'aria-label': item.label, key: index }, overrideProps));
             if (renderOption) {
                 return renderOption({
                     ref,
