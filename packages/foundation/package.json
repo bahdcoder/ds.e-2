@@ -1,6 +1,6 @@
 {
   "name": "@ds.e-2/foundation",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "lib/index.js",
   "license": "MIT",
   "devDependencies": {
