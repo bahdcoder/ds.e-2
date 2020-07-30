@@ -2,15 +2,17 @@ const Fs = require('fs')
 const Path = require('path')
 const Sass = require('node-sass')
 
+const resolve = (path) => Path.resolve(__dirname, '..', '..', path)
+
 const getComponents = () => {
     let allComponents = []
 
-    const types = ['atoms', 'molecules', 'organisms']
+    const types = ['atoms', 'molecules']
 
     types.forEach(type => {
-        const allFiles = Fs.readdirSync(`src/${type}`).map(file => ({
-            input: `src/${type}/${file}`,
-            output: `lib/${file.slice(0, -4) + 'css'}`
+        const allFiles = Fs.readdirSync(resolve(`src/${type}`)).map(file => ({
+            input: resolve(`src/${type}/${file}`),
+            output: resolve(`lib/${file.slice(0, -4) + 'css'}`)
         }))
 
         allComponents = [
@@ -37,7 +39,7 @@ const compile = (path, fileName) => {
     )    
 }
 
-compile('src/global.scss', 'lib/global.css')
+compile(resolve('src/global.scss'), resolve('lib/global.css'))
 
 getComponents().forEach(component => {
     compile(component.input, component.output)
