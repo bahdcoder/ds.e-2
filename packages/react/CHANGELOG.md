@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/bahdcoder/ds.e-2/compare/v0.4.0...v0.4.1) (2020-07-30)
+
+
+### Bug Fixes
+
+* add files to package.json ([c321faa](https://github.com/bahdcoder/ds.e-2/commit/c321faa91ea9c8d82bce5ec00aa072227a157fd7))
+
+
+
+
+
 # [0.4.0](https://github.com/bahdcoder/ds.e-2/compare/v0.3.1...v0.4.0) (2020-07-30)
 
 
