@@ -27,7 +27,9 @@
     "dev": "yarn lerna run dev",
     "test": "yarn lerna run test",
     "test:watch": "yarn lerna run test:watch",
-    "commit": "yarn git-cz"
+    "commit": "yarn git-cz",
+    "build:storybook": "yarn lerna run build-storybook",
+    "chromatic": "yarn lerna run chromatic"
   },
   "husky": {
     "hooks": {
