@@ -3,13 +3,14 @@ import Select from './Select'
 import Text from '../../atoms/Text'
 import Color from '../../atoms/Color'
 import Margin from '../../atoms/Margin'
+import { withA11Y } from '@storybook/addon-a11y'
 
 import '@ds.e-2/scss/lib/Select.css'
 import '@ds.e-2/scss/lib/Text.css'
 import '@ds.e-2/scss/lib/Color.css'
 import '@ds.e-2/scss/lib/Margin.css'
 
-export default { title: 'Molecules|Select', component: Select }
+export default { title: 'Molecules|Select', component: Select, decorators: [withA11Y] }
 
 const options = [{
     label: 'Strict Black',

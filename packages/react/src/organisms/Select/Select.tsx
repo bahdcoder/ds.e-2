@@ -197,14 +197,14 @@ const Select: React.FC<SelectProps> = ({ width = "100%", options = [], onOptionS
           <path d="M19 9l-7 7-7-7" />
         </svg>
       </button>
-      {isOpen ? (
+      {(
         <ul
           role="menu"
           id="dse-select-list"
           className="dse-select__overlay"
           aria-hidden={isOpen ? undefined : false}
-          style={{ width: `calc(${width} - 2px)`, top: overlayTop }}
-          aria-activedescendant={`dse-select__item-${highlightedIndex}`}
+          style={{ width: `calc(${width} - 2px)`, top: overlayTop, display: isOpen ? 'block' : 'none' }}
+          aria-activedescendant={highlightedIndex ? `dse-select__item-${highlightedIndex}` : undefined}
         >
           {options.map((item, index) => {
             const highlighted = index === highlightedIndex;
@@ -260,7 +260,7 @@ const Select: React.FC<SelectProps> = ({ width = "100%", options = [], onOptionS
             );
           })}
         </ul>
-      ) : null}
+      )}
     </div>
   );
 };
